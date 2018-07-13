@@ -102,24 +102,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-    botoes: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#F5FCFF',
-    },
-  escolha:{},
+  botoes: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
+  },
   imagem:{
     width: 100,
     height: 100,
     margin: 5
   },
   resultados: {
-  justifyContent: 'center',
-  alignItems: 'center',
-  margin: 0
-
-},
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 0
+  },
   resultado:{
     fontSize: 20,
     color: '#2E90E2'
