@@ -1,57 +1,13 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+ * App feito no curso de desenvovimento de apps para iOs e Android React Native.
+*/
 
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity , Image } from 'react-native';
 
+import Icone from './src/components/icone';
+
 type Props = {};
-class Icone extends Component<Props> {
-  render(){
-    if (this.props.escolha == "Pedra") {
-      return(
-        <View style={styles.jogador}>
-          <Text>{this.props.jogador}</Text>
-          <Image
-            source={require('./images/pedra.png')}
-             style={styles.imagem}
-          />
-        </View>
-      );
-    }
-    else if (this.props.escolha == "Papel") {
-      return(
-        <View style={styles.jogador}>
-          <Text>{this.props.jogador}</Text>
-          <Image
-            source={require('./images/papel.png')}
-             style={styles.imagem}
-          />
-      </View>
-      );
-
-    }
-    else if (this.props.escolha == "Tesoura") {
-      return(
-        <View style={styles.jogador}>
-          <Text>{this.props.jogador}</Text>
-          <Image
-            source={require('./images/tesoura.png')}
-             style={styles.imagem}
-          />
-        </View>
-      );
-
-    }
-    else{
-      return false;
-    }
-  };
-};
 export default class App extends Component<Props> {
   constructor(props){
     super(props);
@@ -162,10 +118,6 @@ const styles = StyleSheet.create({
   escolhaComputador:{
     color: "#AC3745",
     fontSize: 20,
-  },
-  jogador: {
-    alignItems: 'center',
-    marginBottom: 20,
   },
   resultados: {
     marginTop: 30,
