@@ -10,6 +10,48 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity , Image } from 'react-native';
 
 type Props = {};
+class Icone extends Component<Props> {
+  render(){
+    if (this.props.escolha == "Pedra") {
+      return(
+        <View style={styles.jogador}>
+          <Text>{this.props.jogador}</Text>
+          <Image
+            source={require('./images/pedra.png')}
+             style={styles.imagem}
+          />
+        </View>
+      );
+    }
+    else if (this.props.escolha == "Papel") {
+      return(
+        <View style={styles.jogador}>
+          <Text>{this.props.jogador}</Text>
+          <Image
+            source={require('./images/papel.png')}
+             style={styles.imagem}
+          />
+      </View>
+      );
+
+    }
+    else if (this.props.escolha == "Tesoura") {
+      return(
+        <View style={styles.jogador}>
+          <Text>{this.props.jogador}</Text>
+          <Image
+            source={require('./images/tesoura.png')}
+             style={styles.imagem}
+          />
+        </View>
+      );
+
+    }
+    else{
+      return false;
+    }
+  };
+};
 export default class App extends Component<Props> {
   constructor(props){
     super(props);
@@ -30,7 +72,7 @@ export default class App extends Component<Props> {
     let resultado = '';
 
     if (escolhaComputador == escolhaUsuario) {
-        resultado = 'Empate';
+        resultado = 'Empatou!';
     }
     else if (escolhaComputador == 'Pedra' && escolhaUsuario == 'Papel') {
         resultado = 'Você ganhou!';
@@ -61,36 +103,36 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.botoes}>
-          <TouchableOpacity
-            onPress={ () => {this.jokenpo('Pedra')}}>
-            <Image
-              source={require('./images/pedra.png')}
-               style={styles.imagem}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={ () => {this.jokenpo('Papel')}}>
-            <Image
-              source={require('./images/papel.png')}
-               style={styles.imagem}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={ () => {this.jokenpo('Tesoura')}}>
-            <Image
-              source={require('./images/tesoura.png')}
-               style={styles.imagem}
-            />
-          </TouchableOpacity>
-      </View>
-
-        <View style={styles.resultados}>
-          <Text style={styles.escolha}>Escolha do computador: {this.state.escolhaComputador}</Text>
-          <Text style={styles.escolha}>Escolha do usuário: {this.state.escolhaUsuario}</Text>
-          <Text style={styles.resultado}>{this.state.resultado}</Text>
+      <Text style={styles.titulo}>Escolha uma opção:</Text>
+          <View style={styles.botoes}>
+              <TouchableOpacity
+                onPress={ () => {this.jokenpo('Pedra')}}>
+                <Image
+                  source={require('./images/pedra.png')}
+                   style={styles.imagem}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={ () => {this.jokenpo('Papel')}}>
+                <Image
+                  source={require('./images/papel.png')}
+                   style={styles.imagem}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={ () => {this.jokenpo('Tesoura')}}>
+                <Image
+                  source={require('./images/tesoura.png')}
+                   style={styles.imagem}
+                />
+              </TouchableOpacity>
           </View>
-    </View>
+        <View style={styles.resultados}>
+        <Text style={styles.resultado}>{this.state.resultado}</Text>
+          <Icone escolha={this.state.escolhaComputador} jogador="Computador"></Icone>
+          <Icone escolha={this.state.escolhaUsuario} jogador="Você"></Icone>
+        </View>
+      </View>
     );
   }
 }
@@ -105,21 +147,40 @@ const styles = StyleSheet.create({
   botoes: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#F5FCFF',
+    marginBottom: 20,
   },
   imagem:{
     width: 100,
     height: 100,
-    margin: 5
+  },
+  escolhaUsuario:{
+    color: '#9AB628',
+    fontSize: 20,
+  },
+  escolhaComputador:{
+    color: "#AC3745",
+    fontSize: 20,
+  },
+  jogador: {
+    alignItems: 'center',
+    marginBottom: 20,
   },
   resultados: {
-    justifyContent: 'center',
+    marginTop: 30,
     alignItems: 'center',
-    margin: 0
   },
   resultado:{
-    fontSize: 20,
-    color: '#2E90E2'
+    marginBottom: 20,
+    fontSize: 30,
+    color: '#2E90E2',
+    fontWeight: 'bold'
+  },
+  titulo:{
+    marginBottom: 20,
+    fontSize: 36,
+    color: '#EA325F',
+    fontWeight: 'bold'
   },
 });
