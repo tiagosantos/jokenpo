@@ -7,54 +7,52 @@ import { StyleSheet, Text, View, TouchableOpacity , Image } from 'react-native';
 
 import Icone from './src/components/icone';
 
+const pedra = require('./images/pedra.png');
+const papel = require('./images/papel.png');
+const tesoura = require('./images/tesoura.png');
+
 type Props = {};
 export default class App extends Component<Props> {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state ={ escolhaUsuario: '', escolhaComputador: '' , imagem: '' };
   };
-  jokenpo(escolhaUsuario){
-
-    let numAleatorio = Math.floor(Math.random() * 3 + 1);
+  jokenpo(escolhaUsuario) {
+    const numAleatorio = Math.floor(Math.random() * 3 + 1);
     let imagem = '';
     let escolhaComputador = '';
-
     switch (numAleatorio) {
       case 1: escolhaComputador = 'Pedra'; break;
       case 2: escolhaComputador = 'Papel'; break;
       case 3: escolhaComputador = 'Tesoura'; break;
+      default: escolhaComputador = '';
     }
 
     let resultado = '';
 
-    if (escolhaComputador == escolhaUsuario) {
+    if (escolhaComputador === escolhaUsuario) {
         resultado = 'Empatou!';
     }
-    else if (escolhaComputador == 'Pedra' && escolhaUsuario == 'Papel') {
+    else if (escolhaComputador === 'Pedra' && escolhaUsuario === 'Papel') {
         resultado = 'Você ganhou!';
     }
-    else if (escolhaComputador == 'Pedra' && escolhaUsuario == 'Tesoura') {
+    else if (escolhaComputador === 'Pedra' && escolhaUsuario === 'Tesoura') {
         resultado = 'Você perdeu!';
     }
-    else if (escolhaComputador == 'Papel' && escolhaUsuario == 'Tesoura') {
+    else if (escolhaComputador === 'Papel' && escolhaUsuario === 'Tesoura') {
         resultado = 'Você ganhou!';
     }
-    else if (escolhaComputador == 'Papel' && escolhaUsuario == 'Pedra') {
+    else if (escolhaComputador === 'Papel' && escolhaUsuario === 'Pedra') {
         resultado = 'Você perdeu!';
     }
-    else if (escolhaComputador == 'Tesoura' && escolhaUsuario == 'Pedra') {
+    else if (escolhaComputador === 'Tesoura' && escolhaUsuario === 'Pedra') {
         resultado = 'Você ganhou!';
     }
     else  {
         resultado = 'Você perdeu!';
     }
 
-    this.setState({
-      escolhaUsuario : escolhaUsuario,
-      escolhaComputador : escolhaComputador,
-      resultado : resultado,
-      imagem : imagem,
-    });
+    this.setState({ escolhaUsuario, escolhaComputador, resultado });
   };
   render() {
     return (
@@ -62,31 +60,31 @@ export default class App extends Component<Props> {
       <Text style={styles.titulo}>Escolha uma opção:</Text>
           <View style={styles.botoes}>
               <TouchableOpacity
-                onPress={ () => {this.jokenpo('Pedra')}}>
+                onPress={() => { this.jokenpo('Pedra'); }}>
                 <Image
-                  source={require('./images/pedra.png')}
-                   style={styles.imagem}
+                  source={ pedra }
+                  style={styles.imagem}
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={ () => {this.jokenpo('Papel')}}>
+                onPress={() => { this.jokenpo('Papel'); }}>
                 <Image
-                  source={require('./images/papel.png')}
-                   style={styles.imagem}
+                  source={ papel }
+                  style={styles.imagem}
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={ () => {this.jokenpo('Tesoura')}}>
+                onPress={() => { this.jokenpo('Tesoura'); }}>
                 <Image
-                  source={require('./images/tesoura.png')}
-                   style={styles.imagem}
+                  source={ tesoura }
+                  style={styles.imagem}
                 />
               </TouchableOpacity>
           </View>
         <View style={styles.resultados}>
         <Text style={styles.resultado}>{this.state.resultado}</Text>
-          <Icone escolha={this.state.escolhaComputador} jogador="Computador"></Icone>
-          <Icone escolha={this.state.escolhaUsuario} jogador="Você"></Icone>
+          <Icone escolha={this.state.escolhaComputador} jogador="Computador" />
+          <Icone escolha={this.state.escolhaUsuario} jogador="Você" />
         </View>
       </View>
     );

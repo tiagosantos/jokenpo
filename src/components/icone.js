@@ -1,48 +1,45 @@
-
-
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
+const pedra = require('../../images/pedra.png');
+const papel = require('../../images/papel.png');
+const tesoura = require('../../images/tesoura.png');
 class Icone extends Component<Props> {
-  render(){
-    if (this.props.escolha == "Pedra") {
+  render() {
+    if (this.props.escolha === "Pedra") {
       return(
         <View style={styles.jogador}>
           <Text>{this.props.jogador}</Text>
           <Image
-            source={require('../../images/pedra.png')}
+            source={ pedra }
              style={styles.imagem}
           />
         </View>
       );
     }
-    else if (this.props.escolha == "Papel") {
+    else if (this.props.escolha === "Papel") {
       return(
         <View style={styles.jogador}>
           <Text>{this.props.jogador}</Text>
           <Image
-            source={require('../../images/papel.png')}
+            source={ papel }
              style={styles.imagem}
           />
       </View>
       );
-
     }
-    else if (this.props.escolha == "Tesoura") {
+    else if (this.props.escolha === "Tesoura") {
       return(
         <View style={styles.jogador}>
           <Text>{this.props.jogador}</Text>
           <Image
-            source={require('../../images/tesoura.png')}
+            source={ tesoura }
              style={styles.imagem}
           />
         </View>
       );
-
     }
-    else{
-      return false;
-    }
+    return false;
   };
 };
 
